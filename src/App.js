@@ -1,25 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div class="container">
+      <MyForm />
     </div>
   );
 }
 
-export default App;
+function MyForm(){
+  return(
+    <form>
+    <label for="fname">First name:</label><br/>
+    <input type="text" id="fname" name="fname"/><br/>
+    <label for="lname">Last name:</label><br/>
+    <input type="text" id="lname" name="lname"/>
+    </form>
+  );
+}
