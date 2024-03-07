@@ -1,7 +1,7 @@
 import React from "react";
 import "./SearchForm.css";
 
-export default function SearchForm() {
+export default function SearchForm({season, setSeason}) {
     return (
         <form onSubmit={search} className="search-form">
             <div className="search-container">
