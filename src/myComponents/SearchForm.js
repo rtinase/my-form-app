@@ -1,7 +1,7 @@
 import React from "react";
 import "./SearchForm.css";
 
-export default function SearchForm({season, setSeason}) {
+export default function SearchForm({ selectedSeasons, handleCheckboxChange }) {
     return (
         <form onSubmit={search} className="search-form">
             <div className="search-container">
@@ -9,22 +9,17 @@ export default function SearchForm({season, setSeason}) {
                 <button type="submit" className="button">Search</button>
             </div>
             <div className="radio-input-container">
-                <div className="radio-container">
-                    <input type="radio" value="summer" checked={season === 'summer'} onChange={(e) => setSeason(e.target.value)} />
-                    <label for="summer">Summer</label>
-                </div>
-                <div className="radio-container">
-                    <input type="radio" value="spring" checked={season === 'spring'} onChange={(e) => setSeason(e.target.value)}/>
-                    <label for="summer">Spring</label>
-                </div>
-                <div className="radio-container">
-                    <input type="radio" value="autumn" checked={season === 'autumn'} onChange={(e) => setSeason(e.target.value)} />
-                    <label for="summer">Autumn</label>
-                </div>
-                <div className="radio-container">
-                    <input type="radio" value="winter" checked={season === 'winter'} onChange={(e) => setSeason(e.target.value)} />
-                    <label for="summer">Winter</label>
-                </div>
+                {Object.keys(selectedSeasons).map((season) => (
+                    <label key={season}>
+                        <input
+                            type="checkbox"
+                            name={season}
+                            checked={selectedSeasons[season]}
+                            onChange={handleCheckboxChange}
+                        />
+                        {season.charAt(0).toUpperCase() + season.slice(1)}
+                    </label>
+                ))}
             </div>
         </form>
     );
