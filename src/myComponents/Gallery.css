@@ -1,0 +1,8 @@
+.image {
+    width: 20%;
+}
+#container{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
