@@ -1,7 +1,7 @@
 import './App.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import SearchForm from './myComponents/SearchForm';
 import Gallery from './myComponents/Gallery';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 
 export default function App() {
