@@ -2,7 +2,10 @@
     width: 20%;
 }
 #container{
+    margin-top: 20%;
     display: flex;
     width: 100%;
     justify-content: space-around;
+    flex-wrap: wrap;
+    gap:20px;
 }
