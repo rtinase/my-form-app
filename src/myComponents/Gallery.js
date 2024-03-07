@@ -13,7 +13,7 @@ export default function Gallery(){
     });
 
     return (
-        <div id="container">
+        <div className="container">
             {images}
         </div>
     );

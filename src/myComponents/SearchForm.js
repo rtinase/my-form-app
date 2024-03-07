@@ -3,20 +3,27 @@ import "./SearchForm.css";
 
 export default function SearchForm(){
     return(
-      <form onSubmit={search}>
+      <form onSubmit={search} className="search-form">
         <input name="query"/>
         <button type="submit">Search</button>
-        <input type="radio" id="summer" name="season" value="summer"/>
-        <label for="summer">Summer</label>
-  
-        <input type="radio" id="autumn" name="season" value="autumn"/>
-        <label for="autumn">Autumn</label>
-  
-        <input type="radio" id="winter" name="season" value="winter"/>
-        <label for="winter">Winter</label>
-  
-        <input type="radio" id="spring" name="season" value="spring"/>
-        <label for="spring">Spring</label>
+        <div className="radio-input-container">
+            <div className="radio-container">
+            <input type="radio" id="summer" name="season" value="summer"/>
+            <label for="summer">Summer</label>
+            </div>
+            <div className="radio-container">
+            <input type="radio" id="spring" name="season" value="spring"/>
+            <label for="summer">Spring</label>
+            </div>
+            <div className="radio-container">
+            <input type="radio" id="autumn" name="season" value="autumn"/>
+            <label for="summer">Autumn</label>
+            </div>
+            <div className="radio-container">
+            <input type="radio" id="winter" name="season" value="winter"/>
+            <label for="summer">Winter</label>
+            </div>
+        </div>
       </form>
     );
   }
