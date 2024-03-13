@@ -1,31 +1,43 @@
 import React from 'react';
 import './Gallery.css';
 
-// Create a context containing all .jpg files in the photos directory
 const springImageContext = require.context('../photos/spring', true, /\.jpg$/);
 const summerImageContext = require.context('../photos/summer', true, /\.jpg$/);
 const autumnImageContext = require.context('../photos/autumn', true, /\.jpg$/);
 const winterImageContext = require.context('../photos/winter', true, /\.jpg$/);
 
-function Gallery({ selectedSeasons }) {
+function Gallery({ selectedSeasons, searchQuery }) {
   let imageContexts = {
-    spring: selectedSeasons.spring ? springImageContext : null,
-    summer: selectedSeasons.summer ? summerImageContext : null,
-    autumn: selectedSeasons.autumn ? autumnImageContext : null,
-    winter: selectedSeasons.winter ? winterImageContext : null,
+    spring: springImageContext,
+    summer: summerImageContext,
+    autumn: autumnImageContext,
+    winter: winterImageContext,
   };
 
-  const images = Object.keys(selectedSeasons).flatMap((season) => {
-    if (imageContexts[season]) {
+  // Check if any season is selected
+  const isAnySeasonSelected = Object.values(selectedSeasons).some(value => value);
+
+  const images = Object.keys(imageContexts).flatMap((season) => {
+    // Include the images from the season only if it's selected or if no season is selected
+    if (!isAnySeasonSelected || selectedSeasons[season]) {
       return imageContexts[season].keys().map((image) => {
         const imageUrl = imageContexts[season](image);
-        return <img key={image} src={imageUrl} alt={image} className="image" />;
+        return { key: image, src: imageUrl, alt: image };
       });
     }
     return [];
   });
 
-  return <div className="container">{images}</div>;
+  // Filter images based on search query
+  const filteredImages = images.filter((image) => image.key.includes(searchQuery));
+
+  return (
+    <div className="container">
+      {filteredImages.map((image) => (
+        <img key={image.key} src={image.src} alt={image.alt} className="image" />
+      ))}
+    </div>
+  );
 }
 
 export default Gallery;
