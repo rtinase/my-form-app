@@ -16,7 +16,7 @@ export default function SearchForm({ selectedSeasons, handleCheckboxChange, hand
     return (
         <form onSubmit={onSubmit} className="search-form">
             <div className="search-container">
-                <input name="query" value={query} onChange={handleInputChange} />
+                <input name="query" value={query} onChange={handleInputChange} class="search-field"/>
                 <button type="submit" className="button">Search</button>
             </div>
             <div className="checkbox-container">

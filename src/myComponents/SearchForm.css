@@ -27,24 +27,26 @@
     transition: all 0.3s ease-in-out;
 }
 
+.search-field {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-field:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
 .button:hover {
     background-color: #0056b3;
 }
 
-.radio-input-container {
+.checkbox-container {
     margin-top: 5%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.radio-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 50%;
-    margin-bottom: 20px;
 }
 
 .checkbox-item input[type="checkbox"] {
