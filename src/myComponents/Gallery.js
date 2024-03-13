@@ -8,14 +8,18 @@ const winterImageContext = require.context('../photos/winter', true, /\.jpg$/);
 
 function Gallery({ selectedSeasons, searchQuery }) {
   let imageContexts = {
-    spring: selectedSeasons.spring ? springImageContext : null,
-    summer: selectedSeasons.summer ? summerImageContext : null,
-    autumn: selectedSeasons.autumn ? autumnImageContext : null,
-    winter: selectedSeasons.winter ? winterImageContext : null,
+    spring: springImageContext,
+    summer: summerImageContext,
+    autumn: autumnImageContext,
+    winter: winterImageContext,
   };
 
-  const images = Object.keys(selectedSeasons).flatMap((season) => {
-    if (imageContexts[season]) {
+  // Check if any season is selected
+  const isAnySeasonSelected = Object.values(selectedSeasons).some(value => value);
+
+  const images = Object.keys(imageContexts).flatMap((season) => {
+    // Include the images from the season only if it's selected or if no season is selected
+    if (!isAnySeasonSelected || selectedSeasons[season]) {
       return imageContexts[season].keys().map((image) => {
         const imageUrl = imageContexts[season](image);
         return { key: image, src: imageUrl, alt: image };
