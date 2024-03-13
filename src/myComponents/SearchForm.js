@@ -19,17 +19,21 @@ export default function SearchForm({ selectedSeasons, handleCheckboxChange, hand
                 <input name="query" value={query} onChange={handleInputChange} />
                 <button type="submit" className="button">Search</button>
             </div>
-            <div className="radio-input-container">
+            <div className="checkbox-container">
                 {Object.keys(selectedSeasons).map((season) => (
-                    <label key={season}>
+                    <div key={season} className="checkbox-item">
                         <input
                             type="checkbox"
+                            id={season}
                             name={season}
                             checked={selectedSeasons[season]}
                             onChange={handleCheckboxChange}
                         />
-                        {season.charAt(0).toUpperCase() + season.slice(1)}
-                    </label>
+                        <label htmlFor={season}></label>
+                        <span className="checkbox-description">
+                            {season.charAt(0).toUpperCase() + season.slice(1)}
+                        </span>
+                    </div>
                 ))}
             </div>
         </form>

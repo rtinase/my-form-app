@@ -1,19 +1,34 @@
 .search-form {
     width: 100%;
-    margin-top: 10%;
+    margin-top: 5%;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    align-items: center;
 }
 
 .search-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
+    width: 50%;
+    gap: 10px;
 }
 
-.button{
+.button {
     margin-left: 3%;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+    background-color: #0056b3;
 }
 
 .radio-input-container {
@@ -25,5 +40,65 @@
 }
 
 .radio-container {
-    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+.checkbox-item label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 20px;
+    height: 20px;
+    background: grey;
+    float: left;
+    border-radius: 50%;
+    position: relative;
+    margin-right: 10px;
+}
+
+.checkbox-item label:after {
+    content: '';
+    visibility: hidden;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    border-radius: 50%;
+}
+
+.checkbox-item input[type="checkbox"]:checked+label {
+    background: #007BFF;
+}
+
+.checkbox-item input[type="checkbox"]:checked+label:after {
+    visibility: visible;
+}
+
+
+.checkbox-item label:hover:after {
+    background: #5C6D70;
+}
+
+.checkbox-item label:hover {
+    background: #999;
+}
+
+.checkbox-item .checkbox-description {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.checkbox-item {
+    margin-bottom: 10px;
 }
