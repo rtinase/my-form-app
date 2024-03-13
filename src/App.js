@@ -11,6 +11,7 @@ export default function App() {
     autumn: false,
     winter: false,
   });
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleCheckboxChange = (event) => {
     setSelectedSeasons({
@@ -18,10 +19,14 @@ export default function App() {
       [event.target.name]: event.target.checked,
     });
   };
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
   return (
     <div>
-      <SearchForm selectedSeasons={selectedSeasons} handleCheckboxChange={handleCheckboxChange}/>
-      <Gallery selectedSeasons={selectedSeasons} />
+      <SearchForm selectedSeasons={selectedSeasons} handleCheckboxChange={handleCheckboxChange} handleSearch={handleSearch} />
+      <Gallery selectedSeasons={selectedSeasons} searchQuery={searchQuery} />
     </div>
   );
 }

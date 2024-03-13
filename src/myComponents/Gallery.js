@@ -1,13 +1,12 @@
 import React from 'react';
 import './Gallery.css';
 
-// Create a context containing all .jpg files in the photos directory
 const springImageContext = require.context('../photos/spring', true, /\.jpg$/);
 const summerImageContext = require.context('../photos/summer', true, /\.jpg$/);
 const autumnImageContext = require.context('../photos/autumn', true, /\.jpg$/);
 const winterImageContext = require.context('../photos/winter', true, /\.jpg$/);
 
-function Gallery({ selectedSeasons }) {
+function Gallery({ selectedSeasons, searchQuery }) {
   let imageContexts = {
     spring: selectedSeasons.spring ? springImageContext : null,
     summer: selectedSeasons.summer ? summerImageContext : null,
@@ -19,13 +18,22 @@ function Gallery({ selectedSeasons }) {
     if (imageContexts[season]) {
       return imageContexts[season].keys().map((image) => {
         const imageUrl = imageContexts[season](image);
-        return <img key={image} src={imageUrl} alt={image} className="image" />;
+        return { key: image, src: imageUrl, alt: image };
       });
     }
     return [];
   });
 
-  return <div className="container">{images}</div>;
+  // Filter images based on search query
+  const filteredImages = images.filter((image) => image.key.includes(searchQuery));
+
+  return (
+    <div className="container">
+      {filteredImages.map((image) => (
+        <img key={image.key} src={image.src} alt={image.alt} className="image" />
+      ))}
+    </div>
+  );
 }
 
 export default Gallery;

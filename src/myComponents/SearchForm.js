@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SearchForm.css";
 
-export default function SearchForm({ selectedSeasons, handleCheckboxChange }) {
+export default function SearchForm({ selectedSeasons, handleCheckboxChange, handleSearch }) {
+    const [query, setQuery] = useState('');
+
+    const onSubmit = (event) => {
+        event.preventDefault();
+        handleSearch(query);
+    };
+
+    const handleInputChange = (event) => {
+        setQuery(event.target.value);
+    };
+
     return (
-        <form onSubmit={search} className="search-form">
+        <form onSubmit={onSubmit} className="search-form">
             <div className="search-container">
-                <input name="query" />
+                <input name="query" value={query} onChange={handleInputChange} />
                 <button type="submit" className="button">Search</button>
             </div>
             <div className="radio-input-container">
@@ -23,9 +34,4 @@ export default function SearchForm({ selectedSeasons, handleCheckboxChange }) {
             </div>
         </form>
     );
-}
-
-function search(formData) {
-    const query = formData.get("query");
-    alert(`You searched for '${query}'`);
 }
