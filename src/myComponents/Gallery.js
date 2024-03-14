@@ -34,7 +34,10 @@ function Gallery({ selectedSeasons, searchQuery }) {
   return (
     <div className="container">
       {filteredImages.map((image) => (
-        <img key={image.key} src={image.src} alt={image.alt} className="image" />
+        <div key={image.key} className='image-container'>
+          <img src={image.src} alt={image.alt} className="image" /> 
+          <p className='image-name'>{image.src.substring(image.src.lastIndexOf('/')).split('.')[0].slice(1)}</p> 
+        </div>
       ))}
     </div>
   );
